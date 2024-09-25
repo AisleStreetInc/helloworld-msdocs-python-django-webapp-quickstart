@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/1a24b062-7edf-44b1-bee3-fd189b624682/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/helloworld-exemplar-django",
+    "appService.deploySubpath": "."
+}

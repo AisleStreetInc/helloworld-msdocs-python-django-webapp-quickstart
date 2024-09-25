@@ -1,2 +1,5 @@
 Django
 whitenoise
+
+azure-identity
+azure-keyvault-secrets
