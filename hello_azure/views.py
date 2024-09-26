@@ -35,9 +35,13 @@ def hello(request):
 
     print('----- Before get_secret')
 
+    try:
     # Retrieve the secret
-    retrieved_secret = secret_client.get_secret(secret_name)
-
+        retrieved_secret = secret_client.get_secret(secret_name)
+    except Exception as e:
+        print("Error retrieving secret:", str(e))
+        # Handle the error, e.g., log it, retry, or raise a custom exception
+    
     print('----- After get_secret')
 
     secret_value = retrieved_secret.value
