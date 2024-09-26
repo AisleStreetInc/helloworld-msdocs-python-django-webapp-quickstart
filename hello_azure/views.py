@@ -14,12 +14,18 @@ def hello(request):
     ###
     # Testing for getting key vault
     ###
-    
+
+    print('----- Before setting')
+
     # Replace with your Key Vault URL
     key_vault_url = "https://exemplar-test-value.vault.azure.net/"
 
+    print('----- Before DefaultAzureCredential')
+
     # Initialize the DefaultAzureCredential (uses environment variables or managed identity)
     credential = DefaultAzureCredential()
+
+    print('----- Before SecretClient')
 
     # Create a SecretClient using the URL and credentials
     secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
@@ -27,8 +33,13 @@ def hello(request):
     # Replace with your secret name
     secret_name = "exemplar-test-key"
 
+    print('----- Before get_secret')
+
     # Retrieve the secret
     retrieved_secret = secret_client.get_secret(secret_name)
+
+    print('----- After get_secret')
+
     secret_value = retrieved_secret.value
 
     # Print the secret value
