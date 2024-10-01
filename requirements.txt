@@ -1,6 +1,6 @@
 Django
 whitenoise
-
+stripe
 azure-core==1.26.0  # Specify the latest compatible version
 azure-identity==1.12.0  # Specify a compatible version for identity package
 azure-keyvault-secrets
