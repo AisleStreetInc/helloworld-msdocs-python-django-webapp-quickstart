@@ -24,7 +24,21 @@ def redirect_button (request):
 
 ###
 # needs to be hided.
-stripe.api_key = 'sk_test_51Q2xbFHo2S95esHCvZllu2zMvO1z9911eTiCC5wxtNenRjqSOAH5jiXXN2k2MMh350lFp4bXtlHpKiOmDCSfySDo006uCsuZZZ'
+
+key_vault_url = "https://exemplar-ai-prod.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
+stripe_key_string = ''
+secret_stripe_key_string = 'stripe-api-key'   # Currently using chaesang's private one.
+try:
+    # Retrieve the secret
+    retrieved_stripe_key_string = secret_client.get_secret(secret_stripe_key_string)
+    stripe_key_string = retrieved_stripe_key_string.value  # Ensure value is assigned here
+except Exception as e:
+    print("Error retrieving secret:", str(e))
+
+stripe.api_key = stripe_key_string
 
 @csrf_exempt
 def hello(request):
