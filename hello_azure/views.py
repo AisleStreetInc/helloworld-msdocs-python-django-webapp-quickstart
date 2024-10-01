@@ -107,10 +107,10 @@ def create_checkout_session(request):
         ],
         mode='payment',
 
-        success_url=reverse('success'),
-        cancel_url=reverse('cancel'),
-        # success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
-        # cancel_url=domain_url + '/canceled',
+        # success_url=reverse('success'),
+        # cancel_url=reverse('cancel'),
+        success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=domain_url + '/cancel',
         
     )
 
