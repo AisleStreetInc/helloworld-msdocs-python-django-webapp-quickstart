@@ -21,6 +21,9 @@ def standalone_button(request):
 def redirect_button (request):
     return render(request, 'hello_azure/redirect_button.html')
 
+
+###
+# needs to be hided.
 stripe.api_key = 'sk_test_51Q2xbFHo2S95esHCvZllu2zMvO1z9911eTiCC5wxtNenRjqSOAH5jiXXN2k2MMh350lFp4bXtlHpKiOmDCSfySDo006uCsuZZZ'
 
 @csrf_exempt
@@ -86,7 +89,8 @@ def create_checkout_session(request):
     # 'pk_test_51Q2xbFHo2S95esHChBBAXVc5S4cLHhoijzrn1mHNQAAYz6spsGh7ZZBNSLCiDhcC0iO81eckipjOuInwFdIJuiTW00ThNqk0au'
     
     # domain_url = os.getenv('DOMAIN')
-    domain_url='http://localhost:8000'
+    # domain_url='http://localhost:8000'
+    domain_url='https://helloworld-exemplar-django.azurewebsites.net'
 
     session = stripe.checkout.Session.create(
         line_items=[
@@ -103,10 +107,10 @@ def create_checkout_session(request):
         ],
         mode='payment',
 
-        # success_url=reverse('success'),
-        # cancel_url=reverse('cancel'),
-        success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url=domain_url + '/canceled',
+        success_url=reverse('success'),
+        cancel_url=reverse('cancel'),
+        # success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
+        # cancel_url=domain_url + '/canceled',
         
     )
 
@@ -118,7 +122,7 @@ def success(request):
     checkout_session = stripe.checkout.Session.retrieve(id)
     return JsonResponse(checkout_session)
 
-    
+
 def cancel(request):
     sample_data = {
         "status": "canceled",
