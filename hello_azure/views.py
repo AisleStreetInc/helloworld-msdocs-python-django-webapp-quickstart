@@ -132,6 +132,7 @@ def create_checkout_session(request):
 
 # http://localhost:3000/success?session_id=cs_test_a1mfCVlZiJuQ5OKR1JFIoafDHR19DEGD2M3GSiArUfT1v2fhDXH2xZHKN6
 def success(request):
+    print(stripe.api_key)
     id = request.GET.get('session_id')
     checkout_session = stripe.checkout.Session.retrieve(id)
     return JsonResponse(checkout_session)
