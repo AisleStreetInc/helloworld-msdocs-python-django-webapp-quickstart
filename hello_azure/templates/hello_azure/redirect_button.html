@@ -4,8 +4,21 @@
   </head>
   <body>
     <!-- Use action="/create-checkout-session.php" if your server is PHP based. -->
+
     <form action="/create-checkout-session" method="POST">
-      <button type="submit">Checkout</button>
+      <input type="hidden" name="product" value="Product1">
+      <button type="submit">Checkout 10.00</button>
     </form>
+    
+    <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="product" value="Product2">
+      <button type="submit">Checkout 20.00</button>
+    </form>
+    
+    <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="product" value="Product3">
+      <button type="submit">Checkout 50.00</button>
+    </form>
+
   </body>
 </html>

@@ -98,37 +98,46 @@ def hello(request):
     
 @csrf_exempt
 def create_checkout_session(request):
-    # Replace with your Stripe API key
-    # stripe.api_key = 'sk_test_5102xbFHo2595esHCvZ...mDCSfySD0006uCsuZZZ'
-    # 'pk_test_51Q2xbFHo2S95esHChBBAXVc5S4cLHhoijzrn1mHNQAAYz6spsGh7ZZBNSLCiDhcC0iO81eckipjOuInwFdIJuiTW00ThNqk0au'
-    
-    # domain_url = os.getenv('DOMAIN')
-    # domain_url='http://localhost:8000'
-    domain_url='https://helloworld-exemplar-django.azurewebsites.net'
+    domain_url='http://localhost:8000'
+    # domain_url='https://helloworld-exemplar-django.azurewebsites.net'
 
-    session = stripe.checkout.Session.create(
-        line_items=[
-            {
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {
-                        'name': 'T-shirt',
+    id = request.POST.get('product')
+    amount = 0
+    if id == 'Product1':
+        amount = 1000
+    elif id == 'Prouct2':
+        amount = 2000
+    elif id == 'Product3':
+        amount = 5000
+
+    if amount != 0:
+        session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'usd',
+                        'product_data': {
+                            'name': 'Points',
+                        },
+                        'unit_amount': 2000,
                     },
-                    'unit_amount': 2000,
-                },
-                'quantity': 1,
-            }
-        ],
-        mode='payment',
+                    'quantity': 1,
+                }
+            ],
+            mode='payment',
 
-        # success_url=reverse('success'),
-        # cancel_url=reverse('cancel'),
-        success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url=domain_url + '/cancel',
-        
-    )
+            success_url=domain_url + '/success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url=domain_url + '/cancel',
+            
+        )
 
-    return redirect(session.url, code=303)
+        return redirect(session.url, code=303)
+    
+    no_product = {
+        "status": "success",
+        "message": "No products are selected.",
+    }
+    return JsonResponse(no_product)
 
 # http://localhost:3000/success?session_id=cs_test_a1mfCVlZiJuQ5OKR1JFIoafDHR19DEGD2M3GSiArUfT1v2fhDXH2xZHKN6
 def success(request):
