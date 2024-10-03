@@ -98,8 +98,9 @@ def hello(request):
     
 @csrf_exempt
 def create_checkout_session(request):
-    domain_url='http://localhost:8000'
-    # domain_url='https://helloworld-exemplar-django.azurewebsites.net'
+    # You need to manually switch the domain URL
+    # domain_url='http://localhost:8000'
+    domain_url='https://helloworld-exemplar-django.azurewebsites.net'
 
     id = request.POST.get('product')
     amount = 0
