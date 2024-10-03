@@ -104,6 +104,7 @@ def create_checkout_session(request):
 
     id = request.POST.get('product')
     amount = 0
+    
     if id == 'Product1':
         amount = 1000
     elif id == 'Prouct2':
