@@ -104,7 +104,7 @@ def create_checkout_session(request):
 
     id = request.POST.get('product')
     amount = 0
-    
+
     if id == 'Product1':
         amount = 1000
     elif id == 'Prouct2':
@@ -121,7 +121,7 @@ def create_checkout_session(request):
                         'product_data': {
                             'name': 'Points',
                         },
-                        'unit_amount': 2000,
+                        'unit_amount': amount,
                     },
                     'quantity': 1,
                 }
