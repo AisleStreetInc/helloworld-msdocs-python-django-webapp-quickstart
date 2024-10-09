@@ -26,3 +26,8 @@ For deployment to production, create an app setting, `SECRET_KEY`. Use this comm
 ```shell
 python -c 'import secrets; print(secrets.token_hex())'
 ```
+
+
+## For exmplar testing
+
+http://127.0.0.1:8000/redirect_button
