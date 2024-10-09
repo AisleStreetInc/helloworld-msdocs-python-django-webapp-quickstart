@@ -111,6 +111,8 @@ def create_checkout_session(request):
         amount = 2000
     elif id == 'Product3':
         amount = 5000
+    elif id == 'Dynamic':
+        amount = int(request.POST.get('number'))*100
 
     if amount != 0:
         session = stripe.checkout.Session.create(

@@ -20,5 +20,12 @@
       <button type="submit">Checkout 50.00</button>
     </form>
 
-  </body>
+    <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="product" value="Dynamic">
+      <label for="number">Amount (USD):</label>
+      <input type="number" id="number" name="number" required>
+      <button type="submit">Checkout</button>
+    </form>
+  
+    </body>
 </html>
